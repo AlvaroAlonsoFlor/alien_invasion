@@ -1,1 +1,7 @@
+## vs files
+
 .vscode
+
+## Python files
+
+settings/__pycache__
