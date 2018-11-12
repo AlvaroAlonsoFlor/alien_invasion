@@ -14,6 +14,8 @@ def run_game():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+        
+        screen.fill(bg_color)
         # flip == display most recent screen drawn
         pygame.display.flip()
 
