@@ -18,7 +18,8 @@ def run_game():
 
     #conditions to run
     while True:
-        check_events(ship)       
+        check_events(ship)
+        ship.update_position()       
         update_screen(settings, ship, screen)
 
 run_game()
