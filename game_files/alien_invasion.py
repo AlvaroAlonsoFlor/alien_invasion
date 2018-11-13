@@ -2,7 +2,7 @@ import sys
 import pygame
 from setup.settings import Settings
 from models.ship import Ship
-from helpers.game_functions import check_events
+from helpers.game_functions import *
 
 
 def run_game():
@@ -18,11 +18,7 @@ def run_game():
 
     #conditions to run
     while True:
-        check_events()
-        
-        screen.fill(settings.bg_color)
-        ship.blitme()
-        # flip == display most recent screen drawn
-        pygame.display.flip()
+        check_events()       
+        update_screen(settings, ship, screen)
 
 run_game()
