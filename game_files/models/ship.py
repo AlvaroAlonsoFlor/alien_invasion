@@ -4,7 +4,7 @@ import os
 
 class Ship():
 
-    def __init__(self, screen):
+    def __init__(self, screen, settings):
         self.screen = screen
         
         # import and scale image
@@ -15,18 +15,24 @@ class Ship():
         # Alocate rectangle to image and place in center bottom
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
-        self.rect.centerx = self.screen_rect.centerx
+        # set a decimal value for the center, so we can pass floats to the ship speed
+        self.center = float(self.screen_rect.centerx)
+        self.rect.centerx = self.center
         self.rect.bottom = self.screen_rect.bottom
 
         # Moving left or right for continuous movement
         self.move_right = False
         self.move_left = False
 
+        # Settings
+        self.settings = settings
+        self.speed = settings.ship_speed
+
     def update_position(self):
         if self.move_right:
-            self.rect.centerx += 5
+            self.rect.centerx += self.speed
         elif self.move_left:
-            self.rect.centerx -= 5
+            self.rect.centerx -= self.speed
 
     def blitme(self):
         self.screen.blit(self.image, self.rect)
