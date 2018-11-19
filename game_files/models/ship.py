@@ -29,9 +29,9 @@ class Ship():
         self.speed = settings.ship_speed
 
     def update_position(self):
-        if self.move_right:
+        if self.move_right and self.rect.right < self.screen_rect.right:
             self.rect.centerx += self.speed
-        elif self.move_left:
+        elif self.move_left and self.rect.left > 0:
             self.rect.centerx -= self.speed
 
     def blitme(self):
