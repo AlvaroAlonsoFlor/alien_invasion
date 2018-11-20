@@ -23,7 +23,7 @@ def check_keydown_events(event, ship, screen, settings, bullets):
         ship.move_left = True
     
     # Bullets
-    elif event.key == pygame.K_SPACE:
+    elif event.key == pygame.K_SPACE and len(bullets) < settings.bullets_allowed:
         new_bullet = Bullet(settings, screen, ship)
         bullets.add(new_bullet)
 
