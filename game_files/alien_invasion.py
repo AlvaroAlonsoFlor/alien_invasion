@@ -25,12 +25,7 @@ def run_game():
     while True:
         check_events(ship, settings, screen, bullets)
         ship.update_position()
-        bullets.update()
-
-        # iterate through the list copy to avoid deleting in a for loop
-        for bullet in bullets.copy():
-                if bullet.rect.bottom <= 0:
-                        bullets.remove(bullet)   
+        update_bullets(bullets)  
         update_screen(settings, ship, screen, bullets)
 
 run_game()
