@@ -16,8 +16,12 @@ def check_events(ship, settings, screen, bullets):
             check_keyup_events(event, ship)
 
 def check_keydown_events(event, ship, screen, settings, bullets):
+    # Exit shortcut
+    if event.key == pygame.K_q:
+        sys.exit()
+
     # Moves
-    if event.key == pygame.K_RIGHT:
+    elif event.key == pygame.K_RIGHT:
         ship.move_right = True
     elif event.key == pygame.K_LEFT:
         ship.move_left = True
