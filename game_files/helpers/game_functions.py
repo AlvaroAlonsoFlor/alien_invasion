@@ -5,21 +5,35 @@ from models.alien import Alien
 
 # Alien fleet
 
-def create_fleet(settings, screen, aliens):
+def create_fleet(settings, screen, aliens):   
+
+    create_alien_row(settings, screen, aliens)
+    
+
+def create_alien_row(settings, screen, aliens):
+
+    # Get number of aliens
     alien = Alien(settings, screen)
     alien_width = alien.rect.width
+    x_aliens = get_number_of_aliens_x(settings, alien_width)
 
-    # Number of aliens horizontal
-    available_space_x = settings.screen_width - (2 * alien_width)
-    number_aliens_x = int (available_space_x / (2 * alien_width))
-
-    # Create row of aliens
-    for alien_number in range(number_aliens_x):
+    for alien_number in range(x_aliens):
         alien = Alien(settings, screen)
         alien.x = alien_width + (2 * alien_width * alien_number)
         alien.rect.x = alien.x
         aliens.add(alien)
 
+
+def get_number_of_aliens_x(settings, alien_width):
+    available_space_x = settings.screen_width - (2 * alien_width)
+    number_aliens_x = int(available_space_x / (2 * alien_width))
+
+    return number_aliens_x
+
+
+
+
+# EVENTS
 
 def check_events(ship, settings, screen, bullets):
     for event in pygame.event.get():
