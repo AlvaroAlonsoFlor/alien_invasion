@@ -44,11 +44,12 @@ def fire_bullets(event, ship, screen, settings, bullets):
 
 # UPDATE
 
-def update_screen(settings, ship, screen, bullets):
+def update_screen(settings, ship, screen, bullets, alien):
     screen.fill(settings.bg_color)
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.blitme()
+    alien.blitme()
     # flip == display most recent screen drawn
     pygame.display.flip()
 
