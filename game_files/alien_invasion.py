@@ -24,8 +24,8 @@ def run_game():
 
     # Aliens
 
-#     aliens = Group()
-#     create_fleet(settings, screen, aliens)
+    aliens = Group()
+    create_fleet(settings, screen, aliens)
 
     # Conditions to run
     while True:

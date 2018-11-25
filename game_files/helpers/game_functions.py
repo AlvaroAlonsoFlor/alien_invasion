@@ -1,6 +1,24 @@
 import sys
 import pygame
 from models.bullet import Bullet
+from models.alien import Alien
+
+# Alien fleet
+
+def create_fleet(settings, screen, aliens):
+    alien = Alien(settings, screen)
+    alien_width = alien.rect.width
+
+    # Number of aliens horizontal
+    available_space_x = settings.screen_width - (2 * alien_width)
+    number_aliens_x = int (available_space_x / (2 * alien_width))
+
+    # Create row of aliens
+    for alien_number in range(number_aliens_x):
+        alien = Alien(settings, screen)
+        alien.x = alien_width + (2 * alien_width * alien_number)
+        alien.rect.x = alien.x
+        aliens.add(alien)
 
 
 def check_events(ship, settings, screen, bullets):
@@ -44,12 +62,12 @@ def fire_bullets(event, ship, screen, settings, bullets):
 
 # UPDATE
 
-def update_screen(settings, ship, screen, bullets, alien):
+def update_screen(settings, ship, screen, bullets, aliens):
     screen.fill(settings.bg_color)
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.blitme()
-    alien.blitme()
+    aliens.draw(screen)
     # flip == display most recent screen drawn
     pygame.display.flip()
 
@@ -59,4 +77,4 @@ def update_bullets(bullets):
     # iterate through the list copy to avoid deleting in a for loop
     for bullet in bullets.copy():
                 if bullet.rect.bottom <= 0:
-                        bullets.remove(bullet)
+                    bullets.remove(bullet)
