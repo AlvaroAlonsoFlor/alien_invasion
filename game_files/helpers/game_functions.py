@@ -52,12 +52,16 @@ def get_number_of_rows(settings, screen,  ship):
 # Limit checkers
 
 def check_fleet_edges(settings, aliens):
-    for alien in aliens:
+    for alien in aliens.sprites():
         if alien.is_over_edge():
             change_fleet_direction(settings, aliens)
             break
 
 def change_fleet_direction(settings, aliens):
+    for alien in aliens.sprites():
+        alien.rect.y += settings.fleet_drop_speed
+        settings.fleet_direction *= -1
+
     
 
 # EVENTS
@@ -120,5 +124,6 @@ def update_bullets(bullets):
                 if bullet.rect.bottom <= 0:
                     bullets.remove(bullet)
 
-def update_aliens(aliens):
+def update_aliens(settings, aliens):
+    check_fleet_edges(settings, aliens)
     aliens.update()

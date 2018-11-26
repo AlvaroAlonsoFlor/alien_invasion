@@ -32,7 +32,7 @@ def run_game():
         check_events(ship, settings, screen, bullets)
         ship.update_position()
         update_bullets(bullets)  
-        update_aliens(aliens)
+        update_aliens(settings, aliens)
         update_screen(settings, ship, screen, bullets, aliens)
 
 run_game()
