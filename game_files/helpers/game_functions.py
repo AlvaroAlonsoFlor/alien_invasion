@@ -27,7 +27,6 @@ def create_alien_row(settings, screen, aliens, row_number):
         alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
         aliens.add(alien)
 
-
 def get_number_of_aliens_x(settings, alien_width):
     available_space_x = settings.screen_width - (2 * alien_width)
     number_aliens_x = int(available_space_x / (2 * alien_width))
@@ -50,6 +49,16 @@ def get_number_of_rows(settings, screen,  ship):
 
     return number_of_rows
 
+# Limit checkers
+
+def check_fleet_edges(settings, aliens):
+    for alien in aliens:
+        if alien.is_over_edge():
+            change_fleet_direction(settings, aliens)
+            break
+
+def change_fleet_direction(settings, aliens):
+    
 
 # EVENTS
 

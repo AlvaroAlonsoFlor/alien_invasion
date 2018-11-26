@@ -23,7 +23,7 @@ class Alien(Sprite):
         self.screen.blit(self.image, self.rect)
     
     def update(self):
-        self.x += self.settings.alien_speed
+        self.x += self.settings.alien_speed * self.settings.fleet_direction
         self.rect.x = self.x
     
     def is_over_edge(self):
