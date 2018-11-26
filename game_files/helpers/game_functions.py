@@ -5,12 +5,15 @@ from models.alien import Alien
 
 # Alien fleet
 
-def create_fleet(settings, screen, aliens):   
+def create_fleet(settings, screen, aliens, ship): 
 
-    create_alien_row(settings, screen, aliens)
+    total_rows = get_number_of_rows(settings, screen, ship)
+
+    for row_number in range(total_rows):  
+        create_alien_row(settings, screen, aliens, row_number)
     
 
-def create_alien_row(settings, screen, aliens):
+def create_alien_row(settings, screen, aliens, row_number):
 
     # Get number of aliens
     alien = Alien(settings, screen)
@@ -21,6 +24,7 @@ def create_alien_row(settings, screen, aliens):
         alien = Alien(settings, screen)
         alien.x = alien_width + (2 * alien_width * alien_number)
         alien.rect.x = alien.x
+        alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
         aliens.add(alien)
 
 
@@ -30,7 +34,21 @@ def get_number_of_aliens_x(settings, alien_width):
 
     return number_aliens_x
 
+def get_number_of_rows(settings, screen,  ship):
 
+    # Get alien and ship height
+
+    alien = Alien(settings, screen)
+    alien_height = alien.rect.height
+
+    ship_height = ship.rect.height
+
+    # Calculate number of rows
+
+    available_space_y = settings.screen_height - (3 * alien_height) - ship_height
+    number_of_rows = int(available_space_y / (2 * alien_height))
+
+    return number_of_rows
 
 
 # EVENTS
