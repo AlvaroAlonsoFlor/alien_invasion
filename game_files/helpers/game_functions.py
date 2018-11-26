@@ -104,7 +104,6 @@ def fire_bullets(event, ship, screen, settings, bullets):
         bullets.add(new_bullet)
 
 
-
 # UPDATE
 
 def update_screen(settings, ship, screen, bullets, aliens):
