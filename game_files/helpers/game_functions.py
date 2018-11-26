@@ -3,7 +3,7 @@ import pygame
 from models.bullet import Bullet
 from models.alien import Alien
 
-# Alien fleet
+# ALIEN FLEET
 
 def create_fleet(settings, screen, aliens, ship): 
 
@@ -110,3 +110,6 @@ def update_bullets(bullets):
     for bullet in bullets.copy():
                 if bullet.rect.bottom <= 0:
                     bullets.remove(bullet)
+
+def update_aliens(aliens):
+    aliens.update()
