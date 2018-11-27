@@ -115,8 +115,11 @@ def update_screen(settings, ship, screen, bullets, aliens):
     # flip == display most recent screen drawn
     pygame.display.flip()
 
-def update_bullets(bullets):
+def update_bullets(bullets, aliens):
     bullets.update()
+
+    # If it hits an alien, delete bullet and alien
+    collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
 
     # iterate through the list copy to avoid deleting in a for loop
     for bullet in bullets.copy():
