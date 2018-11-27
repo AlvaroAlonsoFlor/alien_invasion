@@ -59,8 +59,8 @@ def check_fleet_edges(settings, aliens):
 
 def change_fleet_direction(settings, aliens):
     for alien in aliens.sprites():
-        alien.rect.y += 2
-        settings.fleet_direction *= -1
+        alien.rect.y += settings.fleet_drop_speed
+    settings.fleet_direction *= -1
 
     
 
