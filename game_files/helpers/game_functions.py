@@ -126,6 +126,10 @@ def update_bullets(bullets, aliens):
                 if bullet.rect.bottom <= 0:
                     bullets.remove(bullet)
 
-def update_aliens(settings, aliens):
+def update_aliens(settings, aliens, ship):
     check_fleet_edges(settings, aliens)
     aliens.update()
+
+    # Hits player
+    if pygame.sprite.spritecollideany(ship, aliens):
+        print("ship hit!")
