@@ -135,7 +135,7 @@ def check_alien_bottom(settings, game_state, screen, ship, aliens, bullets):
 
 def ship_hit(game_state, aliens, bullets, screen, ship, settings):
 
-    if game_state.ships_left:
+    if game_state.ships_left <= 0:
         game_state.ships_left -= 1
 
         #Clear aliens and bullets
@@ -151,7 +151,13 @@ def ship_hit(game_state, aliens, bullets, screen, ship, settings):
     else:
         game_state.game_active = False
         pygame.mouse.set_visible(True)
-        
+
+
+def check_fleet_defeated(aliens, bullets, screen, ship, settings):
+    if len(aliens) == 0:
+        bullets.empty()
+        settings.increase_speed()
+        create_fleet(settings, screen, aliens, ship)
     
 
 # UPDATE
@@ -184,6 +190,7 @@ def update_bullets(bullets, aliens):
 
 def update_aliens(settings, aliens, ship, game_state, screen, bullets):
     check_fleet_edges(settings, aliens)
+    check_fleet_defeated(aliens, bullets, screen, ship, settings)
     aliens.update()
 
     # Hits player
