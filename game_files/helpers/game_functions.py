@@ -133,14 +133,18 @@ def ship_hit(game_state, aliens, bullets, screen, ship, settings):
 
 # UPDATE
 
-def update_screen(settings, ship, screen, bullets, aliens):
+def update_screen(settings, ship, screen, bullets, aliens, game_state, play_button):
     screen.fill(settings.bg_color)
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.blitme()
     aliens.draw(screen)
+    if not game_state.game_active:
+        play_button.draw_button()
     # flip == display most recent screen drawn
     pygame.display.flip()
+
+   
 
 def update_bullets(bullets, aliens):
     bullets.update()
