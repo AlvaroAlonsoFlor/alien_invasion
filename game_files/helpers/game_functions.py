@@ -112,19 +112,24 @@ def check_alien_bottom(settings, game_state, screen, ship, aliens, bullets):
 
 
 def ship_hit(game_state, aliens, bullets, screen, ship, settings):
-    
-    game_state.ships_left -= 1
-    
-    #Clear aliens and bullets
-    aliens.empty()
-    bullets.empty()
 
-    # Recreate position and enemies
-    create_fleet(settings, screen, aliens, ship)
-    ship.recenter()
+    if game_state.ships_left:
+        game_state.ships_left -= 1
+
+        #Clear aliens and bullets
+        aliens.empty()
+        bullets.empty()
+
+        # Recreate position and enemies
+        create_fleet(settings, screen, aliens, ship)
+        ship.recenter()
+
+        # Pause
+        sleep(1)
+    else:
+        game_state.game_active = False
+        
     
-    # Pause
-    sleep(1)
 
 # UPDATE
 
@@ -155,4 +160,3 @@ def update_aliens(settings, aliens, ship, game_state, screen, bullets):
     # Hits player
     if pygame.sprite.spritecollideany(ship, aliens) or check_alien_bottom(settings, game_state, screen, ship, aliens, bullets):
         ship_hit(game_state, aliens, bullets, screen, ship, settings)
-        print(game_state.ships_left)
