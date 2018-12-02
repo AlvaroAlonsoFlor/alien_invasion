@@ -104,17 +104,19 @@ def fire_bullets(event, ship, screen, settings, bullets):
         new_bullet = Bullet(settings, screen, ship)
         bullets.add(new_bullet)
 
-def ship_hit(game_state, aliens, bullets, screen, ship):
-    #decrement ships left
+def ship_hit(game_state, aliens, bullets, screen, ship, settings):
+    
     game_state.ships_left -= 1
-    #empty aliens and bullets
+    
+    #Clear aliens and bullets
     aliens.empty()
     bullets.empty()
 
-    #create new fleet and center ship
+    # Recreate position and enemies
     create_fleet(settings, screen, aliens, ship)
     ship.center
-    #pause for a bit
+    
+    # Pause
     sleep(1)
 
 # UPDATE
@@ -139,10 +141,11 @@ def update_bullets(bullets, aliens):
                 if bullet.rect.bottom <= 0:
                     bullets.remove(bullet)
 
-def update_aliens(settings, aliens, ship, game_state):
+def update_aliens(settings, aliens, ship, game_state, screen, bullets):
     check_fleet_edges(settings, aliens)
     aliens.update()
 
     # Hits player
     if pygame.sprite.spritecollideany(ship, aliens):
-        print("ship hit!")
+        ship_hit(game_state, aliens, bullets, screen, ship, settings)
+        print(game_state.ships_left)
