@@ -6,6 +6,7 @@ from helpers.game_functions import *
 from models.bullet import Bullet
 from pygame.sprite import Group
 from models.alien import Alien
+from models.game_state import GameState
 
 
 def run_game():
