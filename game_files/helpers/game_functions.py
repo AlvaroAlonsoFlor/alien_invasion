@@ -85,7 +85,7 @@ def check_events(ship, settings, screen, bullets, play_button, game_state):
 
 def check_play_button(game_state, play_button, mouse_x, mouse_y):
     if play_button.rect.collidepoint(mouse_x, mouse_y):
-           stats.game_active = True
+           game_state.game_active = True
 
 def check_keydown_events(event, ship, screen, settings, bullets):
     # Exit shortcut
