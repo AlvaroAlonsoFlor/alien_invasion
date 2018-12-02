@@ -62,8 +62,7 @@ def change_fleet_direction(settings, aliens):
     for alien in aliens.sprites():
         alien.rect.y += settings.fleet_drop_speed
     settings.fleet_direction *= -1
-
-    
+ 
 
 # EVENTS
 
@@ -103,6 +102,14 @@ def fire_bullets(event, ship, screen, settings, bullets):
     if event.key == pygame.K_SPACE and len(bullets) < settings.bullets_allowed:
         new_bullet = Bullet(settings, screen, ship)
         bullets.add(new_bullet)
+
+def check_alien_bottom(settings, game_state, screen, ship, aliens, bullets):
+    screen_rect = screen.get_rect()
+
+    for alien in aliens.sprites():
+        if alien.rect.bottom >= screen_rect.bottom:
+            return True
+
 
 def ship_hit(game_state, aliens, bullets, screen, ship, settings):
     
@@ -146,6 +153,6 @@ def update_aliens(settings, aliens, ship, game_state, screen, bullets):
     aliens.update()
 
     # Hits player
-    if pygame.sprite.spritecollideany(ship, aliens):
+    if pygame.sprite.spritecollideany(ship, aliens) or check_alien_bottom(settings, game_state, screen, ship, aliens, bullets):
         ship_hit(game_state, aliens, bullets, screen, ship, settings)
         print(game_state.ships_left)
