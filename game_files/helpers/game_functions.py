@@ -114,7 +114,7 @@ def ship_hit(game_state, aliens, bullets, screen, ship, settings):
 
     # Recreate position and enemies
     create_fleet(settings, screen, aliens, ship)
-    ship.center
+    ship.recenter()
     
     # Pause
     sleep(1)
@@ -134,7 +134,7 @@ def update_bullets(bullets, aliens):
     bullets.update()
 
     # If it hits an alien, delete bullet and alien
-    collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
+    pygame.sprite.groupcollide(bullets, aliens, True, True)
 
     # iterate through the list copy to avoid deleting in a for loop
     for bullet in bullets.copy():
