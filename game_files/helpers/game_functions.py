@@ -66,7 +66,7 @@ def change_fleet_direction(settings, aliens):
 
 # EVENTS
 
-def check_events(ship, settings, screen, bullets, play_button, game_state):
+def check_events(ship, settings, screen, bullets, play_button, game_state, aliens):
     for event in pygame.event.get():
         # Exit conditions
         if event.type == pygame.QUIT:
@@ -80,12 +80,22 @@ def check_events(ship, settings, screen, bullets, play_button, game_state):
         # Check if clicked in play
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
-            check_play_button(game_state, play_button, mouse_x, mouse_y)
+            check_play_button(game_state, play_button, mouse_x, mouse_y, screen, ship, aliens, bullets, settings)
 
 
-def check_play_button(game_state, play_button, mouse_x, mouse_y):
-    if play_button.rect.collidepoint(mouse_x, mouse_y):
-           game_state.game_active = True
+def check_play_button(game_state, play_button, mouse_x, mouse_y, screen, ship, aliens, bullets, settings):
+    if play_button.rect.collidepoint(mouse_x, mouse_y) and not game_state.game_active:
+
+        # Reset all
+        game_state.reset_stats()
+        aliens.empty()
+        bullets.empty()
+        create_fleet(settings, screen, aliens, ship)
+        ship.recenter()
+
+        game_state.game_active = True
+
+
 
 def check_keydown_events(event, ship, screen, settings, bullets):
     # Exit shortcut
