@@ -93,6 +93,9 @@ def check_play_button(game_state, play_button, mouse_x, mouse_y, screen, ship, a
         create_fleet(settings, screen, aliens, ship)
         ship.recenter()
 
+        # Hide cursor
+        pygame.mouse.set_visible(False)
+
         game_state.game_active = True
 
 
@@ -147,6 +150,7 @@ def ship_hit(game_state, aliens, bullets, screen, ship, settings):
         sleep(1)
     else:
         game_state.game_active = False
+        pygame.mouse.set_visible(True)
         
     
 
