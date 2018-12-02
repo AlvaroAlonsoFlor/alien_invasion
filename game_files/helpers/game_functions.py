@@ -2,6 +2,7 @@ import sys
 import pygame
 from models.bullet import Bullet
 from models.alien import Alien
+from time import sleep
 
 # ALIEN FLEET
 
@@ -103,6 +104,18 @@ def fire_bullets(event, ship, screen, settings, bullets):
         new_bullet = Bullet(settings, screen, ship)
         bullets.add(new_bullet)
 
+def ship_hit(game_state, aliens, bullets, screen, ship):
+    #decrement ships left
+    game_state.ships_left -= 1
+    #empty aliens and bullets
+    aliens.empty()
+    bullets.empty()
+
+    #create new fleet and center ship
+    create_fleet(settings, screen, aliens, ship)
+    ship.center
+    #pause for a bit
+    sleep(1)
 
 # UPDATE
 
@@ -126,7 +139,7 @@ def update_bullets(bullets, aliens):
                 if bullet.rect.bottom <= 0:
                     bullets.remove(bullet)
 
-def update_aliens(settings, aliens, ship):
+def update_aliens(settings, aliens, ship, game_state):
     check_fleet_edges(settings, aliens)
     aliens.update()
 

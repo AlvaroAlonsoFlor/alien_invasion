@@ -17,6 +17,9 @@ def run_game():
     screen = pygame.display.set_mode((settings.screen_width, settings.screen_height))
     pygame.display.set_caption("Alien Invasion")
 
+    # Game State
+    game_state = GameState(settings)
+
     # Player Ship
     ship = Ship(screen, settings)
 
@@ -33,7 +36,7 @@ def run_game():
         check_events(ship, settings, screen, bullets)
         ship.update_position()
         update_bullets(bullets, aliens)  
-        update_aliens(settings, aliens, ship)
+        update_aliens(settings, aliens, ship, game_state)
         update_screen(settings, ship, screen, bullets, aliens)
 
 run_game()
