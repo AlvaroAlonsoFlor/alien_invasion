@@ -135,7 +135,7 @@ def check_alien_bottom(settings, game_state, screen, ship, aliens, bullets):
 
 def ship_hit(game_state, aliens, bullets, screen, ship, settings):
 
-    if game_state.ships_left <= 0:
+    if game_state.ships_left > 0:
         game_state.ships_left -= 1
 
         #Clear aliens and bullets
