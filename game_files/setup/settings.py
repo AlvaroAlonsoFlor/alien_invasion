@@ -8,23 +8,17 @@ class Settings():
         self.bg_color = (46, 55, 71)
 
         # Ship settings
-        self.ship_speed = 1.5
-        self.ship_limit = 1
+        self.ship_limit = 2
 
         # Bullet settings
-        self.bullet_speed = 1
         self.bullet_width = 3
         self.bullet_height = 10
         self.bullet_color = (255, 0, 0)
         self.bullets_allowed = 3
 
         # Alien settings
-        self.alien_points = 10
-        self.alien_speed = 1
         self.fleet_drop_speed = 10
         self.speedup_scale = 1.1
-            # from left to right
-        self.fleet_direction = 1
 
         self.initialize_dynamic_settings()
 
