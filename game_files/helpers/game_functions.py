@@ -178,11 +178,16 @@ def update_screen(settings, ship, screen, bullets, aliens, game_state, play_butt
 
    
 
-def update_bullets(bullets, aliens):
+def update_bullets(bullets, aliens, game_state, settings, scoreboard):
     bullets.update()
 
     # If it hits an alien, delete bullet and alien
-    pygame.sprite.groupcollide(bullets, aliens, True, True)
+    if pygame.sprite.groupcollide(bullets, aliens, True, True):
+        game_state.score += settings.alien_points
+        scoreboard.prep_score()
+
+
+
 
     # iterate through the list copy to avoid deleting in a for loop
     for bullet in bullets.copy():

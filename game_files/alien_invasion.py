@@ -47,7 +47,7 @@ def run_game():
 
         if game_state.game_active:
                 ship.update_position()
-                update_bullets(bullets, aliens)  
+                update_bullets(bullets, aliens, game_state, settings, scoreboard)  
                 update_aliens(settings, aliens, ship, game_state, screen, bullets)
         update_screen(settings, ship, screen, bullets, aliens, game_state, play_button, scoreboard)
 
