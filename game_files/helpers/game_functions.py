@@ -168,6 +168,7 @@ def update_screen(settings, ship, screen, bullets, aliens, game_state, play_butt
         bullet.draw_bullet()
     ship.blitme()
     aliens.draw(screen)
+    scoreboard.show_score()
 
     if not game_state.game_active:
         play_button.draw_button()
