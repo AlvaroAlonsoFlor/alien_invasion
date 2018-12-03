@@ -162,7 +162,7 @@ def check_fleet_defeated(aliens, bullets, screen, ship, settings):
 
 # UPDATE
 
-def update_screen(settings, ship, screen, bullets, aliens, game_state, play_button):
+def update_screen(settings, ship, screen, bullets, aliens, game_state, play_button, scoreboard):
     screen.fill(settings.bg_color)
     for bullet in bullets.sprites():
         bullet.draw_bullet()

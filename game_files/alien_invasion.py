@@ -8,6 +8,7 @@ from pygame.sprite import Group
 from models.alien import Alien
 from models.game_state import GameState
 from models.button import Button
+from models.scoreboard import Scoreboard
 
 
 def run_game():
@@ -20,6 +21,9 @@ def run_game():
 
     # Game State
     game_state = GameState(settings)
+
+    # Scoreboard
+    scoreboard = Scoreboard(settings, screen, game_state)
 
     # Player Ship
     ship = Ship(screen, settings)
@@ -45,7 +49,7 @@ def run_game():
                 ship.update_position()
                 update_bullets(bullets, aliens)  
                 update_aliens(settings, aliens, ship, game_state, screen, bullets)
-        update_screen(settings, ship, screen, bullets, aliens, game_state, play_button)
+        update_screen(settings, ship, screen, bullets, aliens, game_state, play_button, scoreboard)
 
         
 
