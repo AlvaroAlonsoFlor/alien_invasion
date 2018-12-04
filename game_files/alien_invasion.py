@@ -43,12 +43,12 @@ def run_game():
     # Conditions to run
     
     while True:
-        check_events(ship, settings, screen, bullets, play_button, game_state, aliens)
+        check_events(ship, settings, screen, bullets, play_button, game_state, aliens, scoreboard)
 
         if game_state.game_active:
                 ship.update_position()
                 update_bullets(bullets, aliens, game_state, settings, scoreboard)  
-                update_aliens(settings, aliens, ship, game_state, screen, bullets)
+                update_aliens(settings, aliens, ship, game_state, screen, bullets, scoreboard)
         update_screen(settings, ship, screen, bullets, aliens, game_state, play_button, scoreboard)
 
         

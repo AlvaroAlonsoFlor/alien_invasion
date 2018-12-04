@@ -1,4 +1,5 @@
 import pygame
+import os
 
 class GameState():
 
@@ -7,6 +8,12 @@ class GameState():
         self.settings = settings
         self.score = 0
         self.reset_stats()
+
+        # High score
+        path = os.path.abspath('score.txt')
+        file = open(path, 'r')
+        self.high_score = file.read()
+        
     
     def reset_stats(self):
         self.score = 0

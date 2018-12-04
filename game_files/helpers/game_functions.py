@@ -66,7 +66,7 @@ def change_fleet_direction(settings, aliens):
 
 # EVENTS
 
-def check_events(ship, settings, screen, bullets, play_button, game_state, aliens):
+def check_events(ship, settings, screen, bullets, play_button, game_state, aliens, scoreboard):
     for event in pygame.event.get():
         # Exit conditions
         if event.type == pygame.QUIT:
@@ -80,7 +80,7 @@ def check_events(ship, settings, screen, bullets, play_button, game_state, alien
         # Check if clicked in play
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
-            check_play_button(game_state, play_button, mouse_x, mouse_y, screen, ship, aliens, bullets, settings)
+            check_play_button(game_state, play_button, mouse_x, mouse_y, screen, ship, aliens, bullets, settings, scoreboard)
 
 
 def check_play_button(game_state, play_button, mouse_x, mouse_y, screen, ship, aliens, bullets, settings, scoreboard):
@@ -137,7 +137,7 @@ def check_alien_bottom(settings, game_state, screen, ship, aliens, bullets):
             return True
 
 
-def ship_hit(game_state, aliens, bullets, screen, ship, settings):
+def ship_hit(game_state, aliens, bullets, screen, ship, settings, scoreboard):
 
     if game_state.ships_left > 0:
         game_state.ships_left -= 1
@@ -152,6 +152,9 @@ def ship_hit(game_state, aliens, bullets, screen, ship, settings):
 
         # Pause
         sleep(1)
+
+        # Update ships left
+        scoreboard.prep_ships()
     else:
         game_state.game_active = False
         pygame.mouse.set_visible(True)
@@ -198,11 +201,11 @@ def update_bullets(bullets, aliens, game_state, settings, scoreboard):
                 if bullet.rect.bottom <= 0:
                     bullets.remove(bullet)
 
-def update_aliens(settings, aliens, ship, game_state, screen, bullets):
+def update_aliens(settings, aliens, ship, game_state, screen, bullets, scoreboard):
     check_fleet_edges(settings, aliens)
     check_fleet_defeated(aliens, bullets, screen, ship, settings)
     aliens.update()
 
     # Hits player
     if pygame.sprite.spritecollideany(ship, aliens) or check_alien_bottom(settings, game_state, screen, ship, aliens, bullets):
-        ship_hit(game_state, aliens, bullets, screen, ship, settings)
+        ship_hit(game_state, aliens, bullets, screen, ship, settings, scoreboard)

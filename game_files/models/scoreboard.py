@@ -38,6 +38,6 @@ class Scoreboard():
 
         for ship_number in range(self.game_state.ships_left):
             ship = Ship(self.screen, self.settings)
-            ship.rect.x = 10 + ship_number * ship.rect.width
-            ship.rect.y = 10
+            ship.rect.x = 20 + ship_number * ship.rect.width
+            ship.rect.y = 20
             self.ships.add(ship)
