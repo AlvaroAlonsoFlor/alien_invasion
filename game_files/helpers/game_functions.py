@@ -70,6 +70,7 @@ def check_events(ship, settings, screen, bullets, play_button, game_state, alien
     for event in pygame.event.get():
         # Exit conditions
         if event.type == pygame.QUIT:
+            game_state.save_high_score()
             sys.exit()
         # Hold key conditions
         elif event.type == pygame.KEYDOWN:

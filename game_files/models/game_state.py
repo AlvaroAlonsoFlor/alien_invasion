@@ -20,15 +20,22 @@ class GameState():
         self.score = 0
         self.ships_left = self.settings.ship_limit
     
-    def update_high_score(self, new_score):
+    def save_high_score(self, session_high_score):
 
-        if self.high_score == '':
-            self.high_score = 0
+        # Get high score from previous games
+        path = os.path.abspath('score.txt')
+        file = open(path, 'r')
+        old_high_score = file.read()
+        file.close()
 
-        if int(self.high_score) < int(new_score):
+        if old_high_score == '':
+            old_high_score = 0
+
+        # Override high score
+        if int(old_high_score) < int(session_high_score):
             path = os.path.abspath('score.txt')
             file = open(path, 'w')
-            file.write(str(new_score))
+            file.write(str(session_high_score))
             file.close()
 
         
