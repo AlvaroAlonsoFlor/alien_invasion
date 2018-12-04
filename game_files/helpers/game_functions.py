@@ -83,7 +83,7 @@ def check_events(ship, settings, screen, bullets, play_button, game_state, alien
             check_play_button(game_state, play_button, mouse_x, mouse_y, screen, ship, aliens, bullets, settings)
 
 
-def check_play_button(game_state, play_button, mouse_x, mouse_y, screen, ship, aliens, bullets, settings):
+def check_play_button(game_state, play_button, mouse_x, mouse_y, screen, ship, aliens, bullets, settings, scoreboard):
     if play_button.rect.collidepoint(mouse_x, mouse_y) and not game_state.game_active:
 
         # Reset all
@@ -92,6 +92,10 @@ def check_play_button(game_state, play_button, mouse_x, mouse_y, screen, ship, a
         bullets.empty()
         create_fleet(settings, screen, aliens, ship)
         ship.recenter()
+
+        # Refresh scoreboard
+        scoreboard.prep_score()
+        scoreboard.prep_ships()
 
         # Hide cursor
         pygame.mouse.set_visible(False)

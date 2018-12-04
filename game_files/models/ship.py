@@ -1,10 +1,14 @@
 import pygame
 import pygame.image
 import os
+from pygame.sprite import Sprite
 
-class Ship():
+class Ship(Sprite):
 
     def __init__(self, screen, settings):
+
+        super(Ship, self).__init__()
+
         self.screen = screen
         
         # import and scale image
