@@ -13,7 +13,7 @@ class Ship(Sprite):
         
         # import and scale image
         img_path =  os.path.abspath("game_files/images")
-        self.image = pygame.image.load(img_path + '/player-ship.bmp')
+        self.image = pygame.image.load(img_path + '/player-ship.png')
         self.image = pygame.transform.scale(self.image, (60, 60))
 
         # Alocate rectangle to image and place in center bottom
