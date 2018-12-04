@@ -16,6 +16,7 @@ class Scoreboard():
 
         # Initial score
         self.prep_score()
+        self.prep_high_score()
 
         # Number of ships
         self.prep_ships()
@@ -42,6 +43,7 @@ class Scoreboard():
     def show_score(self):
         self.screen.blit(self.score_image, self.score_rect)
         self.ships.draw(self.screen)
+        self.screen.blit(self.high_score_image, self.high_score_rect)
     
     def prep_ships(self):
         self.ships = Group()

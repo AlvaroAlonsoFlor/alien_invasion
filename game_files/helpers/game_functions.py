@@ -74,7 +74,7 @@ def check_events(ship, settings, screen, bullets, play_button, game_state, alien
             sys.exit()
         # Hold key conditions
         elif event.type == pygame.KEYDOWN:
-            check_keydown_events(event, ship, screen, settings, bullets)
+            check_keydown_events(event, ship, screen, settings, bullets, game_state)
         # Stop holding key conditions
         elif event.type == pygame.KEYUP:
             check_keyup_events(event, ship)
@@ -105,9 +105,10 @@ def check_play_button(game_state, play_button, mouse_x, mouse_y, screen, ship, a
 
 
 
-def check_keydown_events(event, ship, screen, settings, bullets):
+def check_keydown_events(event, ship, screen, settings, bullets, game_state):
     # Exit shortcut
     if event.key == pygame.K_q:
+        game_state.save_high_score()
         sys.exit()
 
     # Moves
@@ -166,7 +167,11 @@ def check_fleet_defeated(aliens, bullets, screen, ship, settings):
         bullets.empty()
         settings.increase_speed()
         create_fleet(settings, screen, aliens, ship)
-    
+
+def check_high_score(game_state, scoreboard):
+    if game_state.score > int(game_state.high_score):
+        game_state.high_score = game_state.score
+        scoreboard.prep_high_score()   
 
 # UPDATE
 
@@ -193,6 +198,7 @@ def update_bullets(bullets, aliens, game_state, settings, scoreboard):
     if pygame.sprite.groupcollide(bullets, aliens, True, True):
         game_state.score += settings.alien_points
         scoreboard.prep_score()
+        check_high_score(game_state, scoreboard)
 
 
 
