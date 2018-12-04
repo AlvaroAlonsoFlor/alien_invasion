@@ -10,7 +10,7 @@ class Alien(Sprite):
 
         # Import and scale image
         img_path = os.path.abspath("game_files/images")
-        self.image = pygame.image.load(img_path + '/ship.bmp')
+        self.image = pygame.image.load(img_path + '/spaceship.png')
         self.image = pygame.transform.scale(self.image, (60, 60))
         self.rect = self.image.get_rect()
 

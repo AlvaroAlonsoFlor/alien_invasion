@@ -1,4 +1,5 @@
 import sys
+import os
 import pygame
 from setup.settings import Settings
 from models.ship import Ship
@@ -18,6 +19,10 @@ def run_game():
     settings = Settings()
     screen = pygame.display.set_mode((settings.screen_width, settings.screen_height))
     pygame.display.set_caption("Alien Invasion")
+
+    # Background image
+    path = os.path.abspath('game_files/images/space_background.png')
+    background_img = pygame.image.load(path)
 
     # Game State
     game_state = GameState(settings)
@@ -49,7 +54,7 @@ def run_game():
                 ship.update_position()
                 update_bullets(bullets, aliens, game_state, settings, scoreboard)  
                 update_aliens(settings, aliens, ship, game_state, screen, bullets, scoreboard)
-        update_screen(settings, ship, screen, bullets, aliens, game_state, play_button, scoreboard)
+        update_screen(settings, ship, screen, bullets, aliens, game_state, play_button, scoreboard, background_img)
 
         
 

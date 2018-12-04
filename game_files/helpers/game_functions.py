@@ -175,8 +175,9 @@ def check_high_score(game_state, scoreboard):
 
 # UPDATE
 
-def update_screen(settings, ship, screen, bullets, aliens, game_state, play_button, scoreboard):
-    screen.fill(settings.bg_color)
+def update_screen(settings, ship, screen, bullets, aliens, game_state, play_button, scoreboard, background_img):
+    # screen.fill(settings.bg_color)
+    screen.blit(background_img, [0, 0])
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.blitme()
